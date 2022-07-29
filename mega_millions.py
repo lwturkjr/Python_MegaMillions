@@ -44,12 +44,16 @@ def get_drawing_history():
     raw_data = json_data["data"]
     raw_list = [] #
     for i in raw_data:
-        raw_list.extend((i[8], i[9]))
+        raw_list.extend((i[8], i[9], i[10]))
+    
+#    print(raw_list)
 
     chunked_data_list = []
-    for i in range(0, len(raw_list), 2):
-        chunk = raw_list[i:i + 2]
+    for i in range(0, len(raw_list), 3):
+        chunk = raw_list[i:i + 3]
         chunked_data_list.append(chunk)
+    
+#    print(chunked_data_list)
 
     final_data_list = []
     for i in chunked_data_list: # This works, it seems like it could still be more optimized though
@@ -60,7 +64,7 @@ def get_drawing_history():
         # but this works for now
         date_str = date_time_str.strftime("%Y-%m-%d")
 
-        final_data_list.append([date_str, i[1]])
+        final_data_list.append([date_str, i[1], i[2]])
 
     #print(final_data_list)
     return final_data_list
@@ -84,7 +88,6 @@ def quick_pick():
 
     print("========================================================================")
     print("Random quick pick numbers: " + str(nums) +" "+ str(mega_ball))
-    #print("========================================================================")
 
 def get_dates():
     """Analyze frequency of numbers"""
@@ -121,7 +124,8 @@ def get_split_ball_list():
     ball_list = [] # This is a list, of strings being "int int int int int int"
     for i in data:
         if i[0] in date_list:
-            ball_list.append(i[1])
+            ball_list.append(i[1] + " " + i[2])
+    #print(ball_list)
 
     # We split these strings into lists of strings ["int", "int", "int", "int", "int", "int"], [...]
     split_list = []
@@ -134,8 +138,11 @@ def get_split_ball_list():
         for j in i:
             split_ball_list.append(int(j))
             # We want the data in the list to be int, to use comparative operations later
+    
+    #print(split_ball_list)
 
     return split_ball_list
+   
 
 def get_ball_frequency():
     """"Analyze the frequency of balls being picked"""
@@ -143,7 +150,7 @@ def get_ball_frequency():
 
     mb_list = split_ball_list[5::6] # Megaball is going to be every 6th entry in the list
 
-    # To get white ball nums we now delete every 6th entry, which is the megamillions
+    # To get white ball nums we now delete every 6th entry, which is the megaball
     del split_ball_list[5::6]
 
     white_ball_list = split_ball_list # Assign to a new list name, for ease of programming
