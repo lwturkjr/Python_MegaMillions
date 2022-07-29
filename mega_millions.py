@@ -165,14 +165,29 @@ def get_ball_frequency():
     white_ball_dict = {i:white_ball_list.count(i) for i in white_ball_list}
     mb_dict = {i:mb_list.count(i) for i in mb_list}
 
-    # Get MegaBall values and number of times they've been drawn
-    mb_max_value = max(mb_dict.values()) # Find the most commonly drawn MegaBall number
+    # Find the most commonly drawn MegaBall number
+    mb_max_value = max(mb_dict.values()) 
 
     # Maximum secondary value for MB
     mb_max_secondary = 0
     for i in mb_dict.values(): # Find the second most commonly drawn MegaBall number
         if(i > mb_max_secondary and i < mb_max_value):
             mb_max_secondary = i
+
+    # Find the least commonly drawn MegaBall number(s)
+    mb_min_value = min(mb_dict.values())
+
+    # Find the most commonly drawn white ball numbers
+    wb_max_value = max(white_ball_dict.values())
+
+    # Find the second most commonly drawn white ball numbers
+    wb_max_secondary = 0
+    for i in white_ball_dict.values(): 
+        if(i > wb_max_secondary and i < wb_max_value):
+            wb_max_secondary = i
+
+    # Find the least commonly drawn white ball numbers
+    wb_min_value = min(white_ball_dict.values())
 
     print("========================================================================")
     print("All numbers drawn for MegaBall with number of times drawn, in given date range")
@@ -181,26 +196,25 @@ def get_ball_frequency():
     #for key, value in mb_dict.items(): # Print all MB and number of times drawn
     #    print(str(key) + ":" + str(value))
     print("========================================================================")
-    print("Most commonly drawn MegaBalls(s) since given date: ")
+    print("Most commonly drawn MegaBall(s) since given date: ")
     print("Number:Number of times drawn")
     for key, value in mb_dict.items():
         if value == mb_max_value: # Print MB(s) with highest draw rate
             print(str(key) + ":" + str(value))
     print("========================================================================")
-    print("Second most commonly drawn MegaBalls(s) since given date: ")
+    print("Second most commonly drawn MegaBall(s) since given date: ")
     print("Number:Number of times drawn")
     for key, value in mb_dict.items():
         if value == mb_max_secondary: # Print MB(s) with second highest draw rate
             print(str(key) + ":" + str(value))
     print("========================================================================")
-
-    # Get white ball values and number of times they've been drawn
-    wb_max_value = max(white_ball_dict.values())
-    # Maximum secondary value for MB
-    wb_max_secondary = 0
-    for i in white_ball_dict.values(): # Find the second most commonly drawn white ball numbers
-        if(i > wb_max_secondary and i < wb_max_value):
-            wb_max_secondary = i
+    print("Least commonly drawn MegaBall(s) since given date: ")
+    print("Number:Number of times drawn")
+    for key, value in mb_dict.items():
+        if value == mb_min_value: # Print MB(s) with lowest draw rate
+            print(str(key) + ":" + str(value))
+    #================================================================================#
+    print("========================================================================")
     print("All numbers drawn with number of times drawn, in given date range")
     print("Number:Number of times drawn")
     print(white_ball_dict)
@@ -217,6 +231,12 @@ def get_ball_frequency():
     print("Number:Number of times drawn")
     for key, value in white_ball_dict.items():
         if value == wb_max_secondary: # Print wb(s) with second highest draw rate
+            print(str(key) + ":" + str(value))
+    print("========================================================================")
+    print("Least commonly drawn number(s) since given date: ")
+    print("Number:Number of times drawn")
+    for key, value in white_ball_dict.items():
+        if value == wb_min_value: # Print wb(s) with lowest draw rate
             print(str(key) + ":" + str(value))
     print("========================================================================")
     print('This program is just for frequency analysis and a "Quick Pick" random'
