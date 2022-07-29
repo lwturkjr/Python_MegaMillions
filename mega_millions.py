@@ -175,6 +175,7 @@ def get_ball_frequency():
             mb_max_secondary = i
 
     # Find the least commonly drawn MegaBall number(s)
+    # Need to add something to find 0 values
     mb_min_value = min(mb_dict.values())
 
     # Find the most commonly drawn white ball numbers
@@ -187,6 +188,7 @@ def get_ball_frequency():
             wb_max_secondary = i
 
     # Find the least commonly drawn white ball numbers
+    # Need to add something to find 0 values
     wb_min_value = min(white_ball_dict.values())
 
     print("========================================================================")
