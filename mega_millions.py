@@ -94,8 +94,8 @@ def get_dates():
     # For custom date input
     #oldest_date = str(input("Input the oldest date in YYYY-MM-DD format: "))
     #newest_date = str(input("Input the newest date in YYYY-MM-DD format:"))
-    #oldest_date = "2022-01-04" # First drawing of this year
-    oldest_date = "2017-10-28" # This is the latest rule change
+    oldest_date = "2022-01-04" # First drawing of this year (2022)
+    #oldest_date = "2017-10-28" # This is the latest rule change
     #oldest_date = "2002-05-17" # The oldest date the data set goes back to
     #newest_date = "2022-07-26" # If you want to define a specific date range
 
@@ -176,6 +176,11 @@ def get_ball_frequency():
 
     # Find the least commonly drawn MegaBall number(s)
     # Need to add something to find 0 values
+    mb_z = []
+    for x in range(1, 25):
+        if x not in mb_list:
+            mb_z.append(x)
+
     mb_min_value = min(mb_dict.values())
 
     # Find the most commonly drawn white ball numbers
@@ -189,6 +194,11 @@ def get_ball_frequency():
 
     # Find the least commonly drawn white ball numbers
     # Need to add something to find 0 values
+    wb_z = []
+    for x in range(1, 70):
+        if x not in white_ball_list:
+            wb_z.append(x)
+
     wb_min_value = min(white_ball_dict.values())
 
     print("========================================================================")
@@ -197,6 +207,11 @@ def get_ball_frequency():
     print(mb_dict)
     #for key, value in mb_dict.items(): # Print all MB and number of times drawn
     #    print(str(key) + ":" + str(value))
+    if len(mb_z) >= 1:
+        print("========================================================================")
+        print("These numbers have been drawn 0 times since the given date as the MegaBall")
+        for x in mb_z:
+            print(x)
     print("========================================================================")
     print("Most commonly drawn MegaBall(s) since given date: ")
     print("Number:Number of times drawn")
@@ -210,18 +225,22 @@ def get_ball_frequency():
         if value == mb_max_secondary: # Print MB(s) with second highest draw rate
             print(str(key) + ":" + str(value))
     print("========================================================================")
-    print("Least commonly drawn MegaBall(s) since given date: ")
+    print("Least commonly drawn MegaBall(s) since given date (not 0 times): ")
     print("Number:Number of times drawn")
     for key, value in mb_dict.items():
         if value == mb_min_value: # Print MB(s) with lowest draw rate
             print(str(key) + ":" + str(value))
-    #================================================================================#
     print("========================================================================")
     print("All numbers drawn with number of times drawn, in given date range")
     print("Number:Number of times drawn")
     print(white_ball_dict)
     #for key, value in white_ball_dict.items(): # Print all white balls and number of times drawn
     #    print(str(key) + ":" + str(value))
+    if len(wb_z) >= 1:
+        print("========================================================================")
+        print("These numbers have been drawn 0 times since the given date")
+        for x in wb_z:
+            print(x)
     print("========================================================================")
     print("Most commonly drawn number(s) since given date: ")
     print("Number:Number of times drawn")
@@ -242,7 +261,7 @@ def get_ball_frequency():
             print(str(key) + ":" + str(value))
     print("========================================================================")
     print('This program is just for frequency analysis and a "Quick Pick" random'
-          '\nnumber generator making no pretense at predictive accuracy')
+          '\nnumber generator making no pretense at bentlypredictive accuracy')
 
 
 quick_pick()
