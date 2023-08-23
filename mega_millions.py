@@ -261,7 +261,7 @@ def get_ball_frequency():
             print(str(key) + ":" + str(value))
     print("========================================================================")
     print('This program is just for frequency analysis and a "Quick Pick" random'
-          '\nnumber generator making no pretense at bentlypredictive accuracy')
+          '\nnumber generator making no pretense at predictive accuracy')
 
 
 quick_pick()
